@@ -1,4 +1,4 @@
-// ConsoleApplication11.cpp : 定义控制台应用程序的入口点。
+// main.cpp : 定义控制台应用程序的入口点。
 //
 
 #include "stdafx.h"
@@ -14,12 +14,14 @@ using namespace std;
 
 
 class Packet {
+	int count = 0;
 public:
-	void new_packet(const u_char* packet,const int len) {
+	void new_packet(const u_char* packet, const int len) {
+		cout << "[" << count + 1 << "]";
 		Protocol_EthernetII EthernetII(packet, len);
+		count++;
 	}
 };
-
 
 
 #define LINE_LEN 16
@@ -62,9 +64,8 @@ int main(int argc, char **argv)
 	}
 
 	printf("Enter the interface number (1-%d):", i);
-	//scanf_s("%d", &inum);
-	inum = 5;
-
+	scanf_s("%d", &inum);
+	
 	if (inum < 1 || inum > i)
 	{
 		printf("\nInterface number out of range.\n");

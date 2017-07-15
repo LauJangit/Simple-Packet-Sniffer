@@ -17,7 +17,8 @@ inline Protocol_EthernetII::Protocol_EthernetII(const u_char * _uBytes, int _iLe
 	MAC_FRAME_BODY.packet = new u_char[_iLength - iHeadLength - iTailLength];
 	memcpy(MAC_FRAME_BODY.packet, _uBytes + iHeadLength, _iLength - iHeadLength - iTailLength);
 	Protocols::ProtocolUnit new_protocol = Protocols::get_protocol(get_protocol_num(type()), MAC_FRAME_BODY.packet, _iLength - iHeadLength - iTailLength);
-
+	delete new_protocol.oProtocol;
+	delete MAC_FRAME_BODY.packet;
 }
 
 inline int Protocol_EthernetII::get_protocol_num(int _iCode) {

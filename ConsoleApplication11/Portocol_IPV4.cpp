@@ -26,6 +26,8 @@ inline Protocol_IPV4::Protocol_IPV4(u_char *_uBytes, int _iLength) {
 	cout << (int)IP_HEADER.ucDestIp[2] << "." << (int)IP_HEADER.ucDestIp[3]<<"  ";
 
 	Protocols::ProtocolUnit new_protocol = Protocols::get_protocol(get_protocol_num(type()), IP_BODY.packet, _iLength - iHeadLength);
+	delete new_protocol.oProtocol;
+	delete IP_BODY.packet;
 }
 inline int Protocol_IPV4::get_protocol_num(int _iCode) {
 	switch (_iCode)
